@@ -36,7 +36,7 @@ const controlRecipes = async function () {
     console.log(err);
   }
 };
-showRecipe();
+controlRecipes();
 
 // Event listeners
 // window.addEventListener('hashchange', controlRecipes);

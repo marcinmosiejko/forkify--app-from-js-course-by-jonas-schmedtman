@@ -1,5 +1,6 @@
 // import icons from '../img/icons.svg' // Parcel 1
 import icons from 'url:../../img/icons.svg'; // Parcel 2
+import Fraction from 'fractional';
 
 // If we exported entire RecipeView class, we would have to then import it to the controller and create a new object out of that class, basically creating a new RecipeView Object. In that situation it might be possible to create more then one view and we would never want that. That would add unnecessary work to the controller which we want to keep as simple as possible. In order to avoid all that we create the object here and then export that object. That way none from the outside of the RecipeView class here will have access to anything except for the object.
 
