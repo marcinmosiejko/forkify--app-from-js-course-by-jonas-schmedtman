@@ -1,6 +1,7 @@
 // import icons from '../img/icons.svg' // Parcel 1
 import icons from 'url:../../img/icons.svg'; // Parcel 2
-import Fraction from 'fractional';
+// destructioring as there's a Fraction inside a Fraction in this library
+import { Fraction } from 'fractional';
 
 // If we exported entire RecipeView class, we would have to then import it to the controller and create a new object out of that class, basically creating a new RecipeView Object. In that situation it might be possible to create more then one view and we would never want that. That would add unnecessary work to the controller which we want to keep as simple as possible. In order to avoid all that we create the object here and then export that object. That way none from the outside of the RecipeView class here will have access to anything except for the object.
 
@@ -100,7 +101,9 @@ class RecipeView {
               <svg class="recipe__icon">
                 <use href="${icons}#icon-check"></use>
               </svg>
-              <div class="recipe__quantity">${ing.quantity || ''}</div>
+              <div class="recipe__quantity">${
+                ing.quantity ? new Fraction(ing.quantity).toString() : ''
+              }</div>
               <div class="recipe__description">
                 <span class="recipe__unit">${ing.unit}</span>
                 ${ing.description}
