@@ -1,4 +1,5 @@
 import { API_URL } from './config.js';
+import { getJSON } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -7,14 +8,7 @@ export const state = {
 // Changes state object = side effect -> not a pure function -> it's possible to achieve same effect with a pure funciton, but it's a lot of work
 export const loadRecipe = async function (id) {
   try {
-    const res = await fetch(
-      // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcb34'
-      `${API_URL}/${id}`
-    );
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-    // console.log(data);
+    const data = await getJSON(`${API_URL}/${id}`);
 
     const { recipe } = data.data;
 
@@ -28,8 +22,9 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    console.log(state.recipe);
+    // console.log(state.recipe);
   } catch (err) {
-    console.log(err);
+    // Temp error handling
+    console.error(`${err} 👹`);
   }
 };
