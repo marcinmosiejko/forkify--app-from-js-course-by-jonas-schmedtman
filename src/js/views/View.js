@@ -3,6 +3,7 @@ import icons from 'url:../../img/icons.svg'; // Parcel 2
 // We will only use this class as a parent of the child views
 export default class View {
   _data;
+
   render(data) {
     // Check if data exists, both no data (undefined) and empty array []
     if (!data || (Array.isArray(data) && data.length === 0))
