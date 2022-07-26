@@ -10,6 +10,7 @@ export const state = {
     page: 1,
     resultsPerPage: RES_PER_PAGE,
   },
+  bookmarks: [],
 };
 
 // Changes state object = side effect -> not a pure function -> it's possible to achieve same effect with a pure funciton, but it's a lot of work
@@ -51,7 +52,8 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
       };
     });
-    // console.log(state.search.results);
+    // set page back to 1 when loading new results
+    state.search.page = 1;
   } catch (err) {
     console.error(`${err} 👹`);
     throw err;
@@ -75,4 +77,12 @@ export const updateServings = function (newServings) {
   });
 
   state.recipe.servings = newServings;
+};
+
+export const addBookmark = function (recipe) {
+  // add bookmark
+  state.bookmarks.push(recipe);
+
+  // Mark current recipe as bookmarked
+  if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
 };
